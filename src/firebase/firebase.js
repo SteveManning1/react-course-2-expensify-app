@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, remove, update, get, onValue, off, push, onChildRemoved, onChildChanged, onChildAdded } from 'firebase/database';
-import { getAuth } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -15,10 +15,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-//const auth = getAuth(app);
+const auth = getAuth(app);
 const database = getDatabase(app);
+const googleAuthProvider = new GoogleAuthProvider();
 
-export { database as default };
+export { auth, googleAuthProvider, database as default };
 
 // // child_removed
 // onChildRemoved(ref(database, 'expenses'), (snapshot) => {
